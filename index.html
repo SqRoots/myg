@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="Cache-Control" content="max-age=604800">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/solid.css" integrity="sha384-TbilV5Lbhlwdyc4RuIV/JhD8NR+BfMrvz4BL5QFa2we1hQu6wvREr3v6XSRfCTRp" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/fontawesome.css" integrity="sha384-ozJwkrqb90Oa3ZNb+yKFW2lToAWYdTiF1vt8JiH5ptTGHTGcN7qdoR1F95e0kYyG" crossorigin="anonymous">
+  <title>慢乙肝神经网络模型计算器</title>
+  <link rel="icon" href="favicon.ico">
+</head>
+
+<body class="bg-light">
+  <br><br>
+  <header>
+    <h1 class="text-center">慢乙肝神经网络模型计算器</h1>
+  </header>
+  <br><br>
+  <main class="container shadow-sm p-3 mb-5 bg-white rounded">
+    <!-- 参数 -->
+    <div class="row justify-content-md-center">
+      <div class="col col-lg-2"></div>
+      <div class="col-lg-8">
+        <div class="card">
+          <div class="card-header"><b>参数</b></div>
+          <div class="card-body">
+            <form id="form_agrs">
+              <!-- 第一行 -->
+              <div class="form-row">
+
+                <div class="col"></div>
+
+                <div class="col-md-3 mb-3">
+                  <label for="validationServer01"><i class="fas fa-calendar-alt text-black-50"></i> <b>Age</b></label>
+                  <input type="text" class="form-control is-valid border border-secondary rounded" id="arg_age" name="age" placeholder="(正整数)" value="30" required>
+                  <div class="valid-feedback">
+                    年龄
+                  </div>
+                </div>
+
+                <div class="col-md-1 mb-3"></div>
+
+                <div class="col-md-3 mb-3">
+                  <label for="validationServer02"><i class="fas fa-adjust text-black-50"></i> <b>ALT</b></label>
+                  <input type="text" class="form-control is-valid border border-secondary rounded" id="arg_alt" name="alt" placeholder="(正实数)" value="0.00" required>
+                  <div class="valid-feedback">
+                    注释……
+                  </div>
+                </div>
+
+                <div class="col-md-1 mb-3"></div>
+
+                <div class="col-md-3 mb-3">
+                  <label for="validationServer03"><i class="fas fa-capsules text-black-50"></i> <b>AST</b></label>
+                  <div class="input-group">
+                    <input type="text" class="form-control is-valid border border-secondary rounded" id="arg_ast" name="ast" placeholder="(正实数)" value="0.00" required>
+                    <div class="valid-feedback">
+                      注释……
+                    </div>
+                  </div>
+                </div>
+                <div class="col"></div>
+              </div>
+              <!-- 第一行结束 -->
+
+              <!-- 第二行 -->
+              <div class="form-row">
+
+                <div class="col"></div>
+
+                <div class="col-md-3 mb-3">
+                  <label for="validationServer04"><i class="fas fa-eye-dropper text-black-50"></i> <b>GLB</b></label>
+                  <div class="input-group">
+                    <input type="text" class="form-control is-valid border border-secondary rounded" id="arg_glb" name="glb" placeholder="(正实数)" value="0.00" required>
+                    <div class="valid-feedback">
+                      注释……
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-1 mb-3"></div>
+
+                <div class="col-md-3 mb-3">
+                  <label for="validationServer05"><i class="fas fa-fill-drip text-black-50"></i> <b>ALP</b></label>
+                  <div class="input-group">
+                    <input type="text" class="form-control is-valid border border-secondary rounded" id="arg_alp" name="alp" placeholder="(正实数)" value="0.00" required>
+                    <div class="valid-feedback">
+                      注释……
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-1 mb-3"></div>
+
+                <div class="col-md-3 mb-3">
+                  <label for="validationServer06"><i class="fas fa-file-medical-alt text-black-50"></i> <b>HBeAg</b></label>
+                  <div class="input-group">
+                    <input type="text" class="form-control is-valid border border-secondary rounded" id="arg_hbeag" name="hbeag" placeholder="(正实数)" value="0.00" required>
+                    <div class="valid-feedback">
+                      注释……
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col"></div>
+
+              </div>
+              <!-- 第二行结束 -->
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col col-lg-2"></div>
+    </div>
+
+
+    <br>
+    <hr>
+    <br>
+
+    <!-- 结果 -->
+    <div class="row justify-content-md-center">
+      <div class="col col-lg-3"></div>
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-header"><b>结果</b></div>
+          <div class="card-body">
+            <div class="row justify-content-md-center">
+              <div class="col col-md-3">
+                <h5 id="rs_text" class="card-title text-danger"><b>阳性</b></h5>
+              </div>
+              <div class="col col-md-3"></div>
+              <div class="col col-md-6">
+                <span class="align-text-left">概率：</span><span id="rs_value">0.5761688338682499</span>
+              </div>
+            </div>
+
+            <div class="progress">
+              <div id="rs_progress" class="progress-bar bg-danger" role="progressbar" style="width: 58%;" aria-valuenow="58" aria-valuemin="0" aria-valuemax="100">58%</div>
+            </div>
+            <hr>
+            <h5 class="text-center" style="color: #bbb;"><b>说明</b></h5>
+            <ul style="color: #bbb;">
+              <li><b>使用方法1</b>：直接修改上面的参数，会自动计算结果；</li>
+              <li><b>使用方法2</b>：使用URL代参数访问，会自动填写表单和计算结果；</li>
+              <li><b>概率</b>：神经网络模型估计值，为SoftMax函数输出结果。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col col-lg-3"></div>
+    </div>
+
+    <div class="ann-result">
+      <label for=""></label>
+    </div>
+
+  </main>
+
+  <footer class="container shadow-sm p-3 mb-5 bg-white rounded text-info">
+    <div class="row">
+      <div class="col text-center">版权：……  |  单位：……  |  地址：……</div>
+    </div>
+    <div class="row">
+      <div class="col text-center">联系方式：……</div>
+    </div>
+  </footer>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.bootcss.com/mathjs/4.4.0/math.min.js"></script>
+  <script src="js/ann-model.js"></script>
+  <script src="js/evaluate.js"></script>
+</body>
+
+</html>

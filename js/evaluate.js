@@ -78,18 +78,16 @@ function setForm() {
 
 //替换指定传入参数的值,paramName为参数,replaceWith为新值
 function replaceParamVal(paramName, replaceWith) {
-  var oUrl = window.location.search;
-  var state = {title:'',url: oUrl};
-  if (oUrl.length == 0 || oUrl[0] != '?'){
-    oUrl='?age=19'
-    history.pushState(state,'','?age=19');
+  var old_URL = window.location.search;
+  if (old_URL.length == 0 || old_URL[0] != '?'){
+    old_URL='?age=19'
+    history.pushState(null,'','?age=19');
   }
   var re = eval('/(' + paramName + '=)([^&]*)/gi');
   if(getUrlParam(paramName)){
-    var nUrl = oUrl.replace(re, paramName + '=' + replaceWith);
+    var new_URL = old_URL.replace(re, paramName + '=' + replaceWith);
   }else {
-    var nUrl = oUrl+'&'+paramName+'='+replaceWith;
+    var new_URL = old_URL+'&'+paramName+'='+replaceWith;
   }
-  state = {title:'',url: oUrl};
-  history.pushState(state,'', nUrl);
+  history.pushState(null,'', new_URL);
 }

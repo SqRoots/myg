@@ -21,6 +21,11 @@ function eval_ann(ann_input){
   // for (k in form_agrs){
   //   ann_input.push([parseFloat(form_agrs[k].value)])
   // }
+  for (var i=0,len=ann_input.length; i<len; i++){
+    if (ann_input[i]==''){
+      return null
+    }
+  }
 
   // 计算神经网络，输入数据标准化
   var standard_input = math.dotDivide(math.subtract(ann_input,data_mean),data_var);

@@ -40,43 +40,72 @@ function getDataFromForm(){
 // ----------------------------------------------------------------
 // 设置输出
 function setOutput(rs) {
+  //根据语言设置输出结果的变量
+  if($('#toggle-lang_cn').hasClass('btn-primary')){
+    var rs_text_positive = '阳性';
+    var rs_text_negative = '阴性';
+  }else {
+    var rs_text_positive = 'Positive';
+    var rs_text_negative = 'Negative';
+  }
+  //判断结果是阳性还是阴性，并设置文本颜色
   if (rs > 0.5) {
-    var rs_text = '阳性';
+    var rs_text = rs_text_positive;
     $('#rs_progress').addClass('bg-danger');
     $('#rs_text').addClass('text-danger');
-  } else {
-    var rs_text = '阴性';
+  } else if (rs < 0.5) {
+    var rs_text = rs_text_negative;
+    $('#rs_progress').removeClass('bg-danger');
+    $('#rs_text').removeClass('text-danger');
+  }else {
+    var rs_text = '--';
     $('#rs_progress').removeClass('bg-danger');
     $('#rs_text').removeClass('text-danger');
   }
+ //输出结果
   $('#rs_text').html('<b>' + rs_text + '</b>');
-  $('#rs_value').html(rs.toString());
-  rs_ratio = math.round(rs * 100)
-  $('#rs_progress').attr('aria-valuenow', rs_ratio);
-  $('#rs_progress').attr('style', 'width: ' + rs_ratio + '%;');
-  $('#rs_progress').text(rs_ratio.toString() + '%');
+  //输出概率
+  if (rs_text == '--'){
+    //输出概率值
+    $('#rs_value').text('--');
+    //修改进度条
+    $('#rs_progress').attr('aria-valuenow', '0');
+    $('#rs_progress').attr('style', 'width: 0%;');
+    $('#rs_progress').text('--');
+  }else {
+    var rs_ratio = math.round(rs * 100)
+    //输出概率值
+    $('#rs_value').text(rs.toFixed(6).toString());
+    //修改进度条
+    $('#rs_progress').attr('aria-valuenow', rs_ratio);
+    $('#rs_progress').attr('style', 'width: ' + rs_ratio + '%;');
+    $('#rs_progress').text(rs_ratio.toString() + '%');
+  }
+
+
 }
 
 // 从URL中获取参数
 function getUrlParam(name) {
   var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
   var r = window.location.search.substr(1).match(reg); //匹配目标参数
+  //返回参数值
   if (r != null) return unescape(r[2]);
-  return null; //返回参数值
+  return null;
 }
 
 //根据URL中的参数设置表单
 function setForm() {
-  $('#arg_age').val(getUrlParam('age')||19);
-  $('#arg_alt').val(getUrlParam('alt')||'214.4');
-  $('#arg_ast').val(getUrlParam('ast')||'68.7');
-  $('#arg_glb').val(getUrlParam('glb')||'26.7');
-  $('#arg_alp').val(getUrlParam('alp')||'83.1');
-  $('#arg_hbeag').val(getUrlParam('hbeag')||'1665.48');
+  $('#arg_age').val(getUrlParam('age')||'');
+  $('#arg_alt').val(getUrlParam('alt')||'');
+  $('#arg_ast').val(getUrlParam('ast')||'');
+  $('#arg_glb').val(getUrlParam('glb')||'');
+  $('#arg_alp').val(getUrlParam('alp')||'');
+  $('#arg_hbeag').val(getUrlParam('hbeag')||'');
 }
 
 
-//替换指定传入参数的值,paramName为参数,replaceWith为新值
+//替换URL中指定传入参数的值,paramName为参数,replaceWith为新值
 function replaceParamVal(paramName, replaceWith) {
   var old_URL = window.location.search;
   if (old_URL.length == 0 || old_URL[0] != '?'){
@@ -84,10 +113,50 @@ function replaceParamVal(paramName, replaceWith) {
     history.pushState(null,'','?age=19');
   }
   var re = eval('/(' + paramName + '=)([^&]*)/gi');
-  if(getUrlParam(paramName)){
+  if(getUrlParam(paramName) != null){
     var new_URL = old_URL.replace(re, paramName + '=' + replaceWith);
   }else {
     var new_URL = old_URL+'&'+paramName+'='+replaceWith;
   }
   history.pushState(null,'', new_URL);
+}
+
+
+// ======================================================================
+// 切换为简体中文
+function lang_cn(){
+  rs_text=$('#rs_text').text();
+  console.log(rs_text);
+  $('#toggle-lang_cn').removeClass('btn-secondary').addClass('btn-primary');
+  $('#toggle-lang_en').removeClass('btn-primary').addClass('btn-secondary');
+  $('.multi-lang').each(function(){
+    $(this).html($(this).attr('lang_cn'))
+  });
+  //修改结果的语言
+  if (rs_text == '--'){
+    $('#rs_text').html('<b>--</b>');
+  }else if (rs_text == 'Positive'){
+    $('#rs_text').html('<b>阳性</b>');
+  }else {
+    $('#rs_text').html('<b>阴性</b>');
+  }
+}
+
+// ----------------------------------------------------------------
+// 切换为英文
+function lang_en(){
+  rs_text=$('#rs_text').text();
+  $('#toggle-lang_cn').removeClass('btn-primary').addClass('btn-secondary');
+  $('#toggle-lang_en').removeClass('btn-secondary').addClass('btn-primary');
+  $('.multi-lang').each(function(){
+    $(this).html($(this).attr('lang_en'))
+  });
+  //修改结果的语言
+  if (rs_text == '--'){
+    $('#rs_text').html('<b>--</b>');
+  }else if (rs_text == '阳性'){
+    $('#rs_text').html('<b>Positive</b>');
+  }else {
+    $('#rs_text').html('<b>Negative</b>');
+  }
 }

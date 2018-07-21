@@ -10,18 +10,35 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/solid.css" integrity="sha384-TbilV5Lbhlwdyc4RuIV/JhD8NR+BfMrvz4BL5QFa2we1hQu6wvREr3v6XSRfCTRp" crossorigin="anonymous">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/fontawesome.css" integrity="sha384-ozJwkrqb90Oa3ZNb+yKFW2lToAWYdTiF1vt8JiH5ptTGHTGcN7qdoR1F95e0kYyG" crossorigin="anonymous">
-  <title>慢乙肝e抗原血清转换概率--神经网络模型计算器</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/fontawesome.css" integrity="sha384-ozJwkrqb90Oa3ZNb+yKFW2lToAWYdTiF1vt8JiH5ptTGHTGcN7qdoR1F95e0kYyG" crossorigin="anonymous">
+  <!-- Custom CSS -->
+  <!-- <link rel="stylesheet" href="css/multi-lang.css" crossorigin="anonymous"> -->
+  <title>慢性乙肝e抗原血清转换概率--神经网络模型计算器</title>
   <link rel="icon" href="favicon.ico">
 </head>
 
 <body class="bg-light">
   <br><br>
   <header>
-    <h1 class="text-center">慢乙肝e抗原血清转换概率</h1>
-	<h2 class="text-center">神经网络模型计算器</h2>
+    <h1 class="text-center multi-lang" lang_cn="慢性乙型肝炎e抗原血清转换概率" lang_en="Chronic Hepatitis Be Antigen Seroconversion Probability">慢性乙型肝炎e抗原血清转换概率</h1>
+    <h2 class="text-center multi-lang" lang_cn="人工神经网络模型计算器" lang_en="Artificial Neural Network Model Calculator">人工神经网络模型计算器</h2>
   </header>
-  <br><br>
+  <br>
+  <!-- <div class="text-center">
+    <span class="align-text-top">简体中文</span>
+    <label class="switch">
+      <input type="checkbox" checked>
+      <span class="slider round align-middle"></span>
+    </label>
+    <span class="align-middle">English</span>
+  </div> -->
+  <div class="text-center">
+    <div class="btn-group" role="group" aria-label="Basic example">
+      <button id="toggle-lang_cn" type="button" onclick="lang_cn()" class="btn btn-sm btn-primary">简体中文</button>
+      <button id="toggle-lang_en" type="button" onclick="lang_en()" class="btn btn-sm btn-secondary">&nbsp;English&nbsp;</button>
+    </div>
+  </div>
+  <br>
   <main class="container shadow-sm p-3 mb-5 bg-white rounded">
     <!-- 参数 -->
     <br>
@@ -29,7 +46,7 @@
       <div class="col col-lg-2"></div>
       <div class="col-lg-8">
         <div class="card">
-          <div class="card-header"><b>参数</b></div>
+          <div class="card-header"><b class="multi-lang" lang_cn="参数" lang_en="Parameters">参数</b></div>
           <div class="card-body">
             <form id="form_agrs">
               <!-- 第一行 -->
@@ -38,31 +55,31 @@
                 <div class="col"></div>
 
                 <div class="col-md-3 mb-3">
-                  <label for="validationServer01"><i class="fas fa-calendar-alt text-black-50"></i> <b>Age</b></label>
-                  <input type="text" class="form-control is-valid border border-secondary rounded" id="arg_age" name="age" placeholder="(正整数)" value="30" required>
-                  <div class="valid-feedback">
-                    年龄
+                  <label for="validationServer01"><b>Age</b></label>
+                  <input type="text" class="form-control is-valid border border-secondary rounded" id="arg_age" name="age" value="" required>
+                  <div class="valid-feedback multi-lang" lang_cn="年龄（岁）" lang_en="Age (year)">
+                    年龄（岁）
                   </div>
                 </div>
 
                 <div class="col-md-1 mb-3"></div>
 
                 <div class="col-md-3 mb-3">
-                  <label for="validationServer02"><i class="fas fa-adjust text-black-50"></i> <b>ALT</b></label>
-                  <input type="text" class="form-control is-valid border border-secondary rounded" id="arg_alt" name="alt" placeholder="(正实数)" value="0.00" required>
-                  <div class="valid-feedback">
-                    注释……
+                  <label for="validationServer02"><b>ALT</b></label>
+                  <input type="text" class="form-control is-valid border border-secondary rounded" id="arg_alt" name="alt" value="" required>
+                  <div class="valid-feedback multi-lang" lang_cn="丙氨酸氨基转移酶（U/L）" lang_en="ALT (alanine aminotransferase; U/L)">
+                    丙氨酸氨基转移酶（U/L）
                   </div>
                 </div>
 
                 <div class="col-md-1 mb-3"></div>
 
                 <div class="col-md-3 mb-3">
-                  <label for="validationServer03"><i class="fas fa-capsules text-black-50"></i> <b>AST</b></label>
+                  <label for="validationServer03"><b>AST</b></label>
                   <div class="input-group">
-                    <input type="text" class="form-control is-valid border border-secondary rounded" id="arg_ast" name="ast" placeholder="(正实数)" value="0.00" required>
-                    <div class="valid-feedback">
-                      注释……
+                    <input type="text" class="form-control is-valid border border-secondary rounded" id="arg_ast" name="ast" value="" required>
+                    <div class="valid-feedback multi-lang" lang_cn="门冬氨酸氨基转移酶（U/L）" lang_en="AST (aspartate aminotransferase; U/L)">
+                      门冬氨酸氨基转移酶（U/L）
                     </div>
                   </div>
                 </div>
@@ -76,11 +93,11 @@
                 <div class="col"></div>
 
                 <div class="col-md-3 mb-3">
-                  <label for="validationServer04"><i class="fas fa-eye-dropper text-black-50"></i> <b>GLB</b></label>
+                  <label for="validationServer04"><b>GLB</b></label>
                   <div class="input-group">
-                    <input type="text" class="form-control is-valid border border-secondary rounded" id="arg_glb" name="glb" placeholder="(正实数)" value="0.00" required>
-                    <div class="valid-feedback">
-                      注释……
+                    <input type="text" class="form-control is-valid border border-secondary rounded" id="arg_glb" name="glb" value="" required>
+                    <div class="valid-feedback multi-lang" lang_cn="球蛋白（g/L）" lang_en="GLO (globulin; g/L)">
+                      球蛋白（g/L）
                     </div>
                   </div>
                 </div>
@@ -88,11 +105,11 @@
                 <div class="col-md-1 mb-3"></div>
 
                 <div class="col-md-3 mb-3">
-                  <label for="validationServer05"><i class="fas fa-fill-drip text-black-50"></i> <b>ALP</b></label>
+                  <label for="validationServer05"><b>ALP</b></label>
                   <div class="input-group">
-                    <input type="text" class="form-control is-valid border border-secondary rounded" id="arg_alp" name="alp" placeholder="(正实数)" value="0.00" required>
-                    <div class="valid-feedback">
-                      注释……
+                    <input type="text" class="form-control is-valid border border-secondary rounded" id="arg_alp" name="alp" value="" required>
+                    <div class="valid-feedback multi-lang" lang_cn="碱性磷酸酶（U/L）" lang_en="ALP (alkaline phosphatase; U/L)">
+                      碱性磷酸酶（U/L）
                     </div>
                   </div>
                 </div>
@@ -100,11 +117,11 @@
                 <div class="col-md-1 mb-3"></div>
 
                 <div class="col-md-3 mb-3">
-                  <label for="validationServer06"><i class="fas fa-file-medical-alt text-black-50"></i> <b>HBeAg</b></label>
+                  <label for="validationServer06"><b>HBeAg</b></label>
                   <div class="input-group">
-                    <input type="text" class="form-control is-valid border border-secondary rounded" id="arg_hbeag" name="hbeag" placeholder="(正实数)" value="0.00" required>
-                    <div class="valid-feedback">
-                      注释……
+                    <input type="text" class="form-control is-valid border border-secondary rounded" id="arg_hbeag" name="hbeag" value="" required>
+                    <div class="valid-feedback multi-lang" lang_cn="乙肝e抗原滴度（S/CO）" lang_en="qHBeAg (quantitative hepatitis Be antigen; S/CO)">
+                      乙肝e抗原滴度（S/CO）
                     </div>
                   </div>
                 </div>
@@ -127,18 +144,18 @@
 
     <!-- 结果 -->
     <div class="row justify-content-md-center">
-      <div class="col col-lg-3"></div>
-      <div class="col-lg-6">
+      <div class="col col-lg-2"></div>
+      <div class="col-lg-8">
         <div class="card">
-          <div class="card-header"><b>结果</b></div>
+          <div class="card-header"><b class="multi-lang" lang_cn="结果" lang_en="Result">结果</b></div>
           <div class="card-body">
             <div class="row justify-content-md-center">
               <div class="col col-md-3">
-                <h5 id="rs_text" class="card-title text-danger"><b>阳性</b></h5>
+                <h5 id="rs_text" class="card-title text-danger multi-lang" lang_cn="<b>阳性</b>" lang_en="<b>Positive</b>"><b>阳性</b></h5>
               </div>
-              <div class="col col-md-3"></div>
-              <div class="col col-md-6">
-                <span class="align-text-left">概率：</span><span id="rs_value">0.5761688338682499</span>
+              <div class="col col-md-6"></div>
+              <div class="col col-md-3">
+                <span class="align-text-left multi-lang" lang_cn="概率：" lang_en="Probability: ">概率：</span><span id="rs_value">0.5761688338682499</span>
               </div>
             </div>
 
@@ -146,16 +163,16 @@
               <div id="rs_progress" class="progress-bar bg-danger" role="progressbar" style="width: 58%;" aria-valuenow="58" aria-valuemin="0" aria-valuemax="100">58%</div>
             </div>
             <hr>
-            <h5 class="text-center" style="color: #bbb;"><b>说明</b></h5>
+            <h5 class="text-center"style="color: #bbb;"><b class="multi-lang" lang_cn="说明" lang_en="Instructions">说明</b></h5>
             <ul style="color: #bbb;">
-              <li><b>使用方法1</b>：直接修改上面的参数，会自动计算结果；</li>
-              <li><b>使用方法2</b>：使用URL代参数访问，会自动填写表单和计算结果；</li>
-              <li><b>概率</b>：神经网络模型估计值，为SoftMax函数输出结果。</li>
+              <li class="multi-lang" lang_cn="<b>使用方法1</b>：直接修改上面的参数，会自动计算结果；" lang_en="<b>1st Usage</b>: Directly modify the above parameters and the result will be calculated;"><b>使用方法1</b>：直接修改上面的参数，会自动计算结果；</li>
+              <li class="multi-lang" lang_cn="<b>使用方法2</b>：使用URL代参数访问，会自动填写表单和计算结果；" lang_en="<b>2nd Usage</b>: Go to the URL with parameters, the form and results wile be completed;"><b>使用方法2</b>：使用URL代参数访问，会自动填写表单和计算结果；</li>
+              <li class="multi-lang" lang_cn="<b>概率</b>：是神经网络模型的SoftMax函数的输出结果。" lang_en='<b>Glossary "Probability"</b>: The output of the SoftMax function of the neural network model.'><b>概率</b>：是神经网络模型的SoftMax函数的输出结果。</li>
             </ul>
           </div>
         </div>
       </div>
-      <div class="col col-lg-3"></div>
+      <div class="col col-lg-2"></div>
     </div>
 
     <div class="ann-result">
@@ -166,10 +183,10 @@
 
   <footer class="container shadow-sm p-3 mb-5 bg-white rounded text-info">
     <div class="row">
-      <div class="col text-center">版权：……  |  单位：……  |  地址：……</div>
+      <div class="col text-center multi-lang" lang_cn="版权：首都医科大学附属北京地坛医院中西医结合中心 | 单位：首都医科大学附属北京地坛医院" lang_en="CopyRight：Center of Integrative Medicine, Beijing Ditan Hospital, Capital Medical University | Company：Beijing Ditan Hospital, Capital Medical University">版权：首都医科大学附属北京地坛医院中西医结合中心 | 单位：首都医科大学附属北京地坛医院</div>
     </div>
     <div class="row">
-      <div class="col text-center">邮箱：xxx@xxx.xxx  |  电话：12345678901</div>
+      <div class="col text-center multi-lang" lang_cn="邮箱：annmodel@163.com | 电话：010-84322586 | 地址：北京市朝阳区京顺东街8号" lang_en="E-Mail：annmodel@163.com | Phone：+86-10-84322586 | Address：Jingshun Dong Street No. 8, Chaoyang District, Beijing">邮箱：annmodel@163.com | 电话：010-84322586 | 地址：北京市朝阳区京顺东街8号</div>
     </div>
   </footer>
 

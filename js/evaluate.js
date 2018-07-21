@@ -101,17 +101,17 @@ function setForm() {
   $('#arg_ast').val(getUrlParam('ast')||'');
   $('#arg_glb').val(getUrlParam('glb')||'');
   $('#arg_alp').val(getUrlParam('alp')||'');
-  $('#arg_hbeag').val(getUrlParam('hbeag')||'');
+  $('#arg_qhbeag').val(getUrlParam('qhbeag')||'');
 }
 
 
 //替换URL中指定传入参数的值,paramName为参数,replaceWith为新值
 function replaceParamVal(paramName, replaceWith) {
   var old_URL = window.location.search;
-  if (old_URL.length == 0 || old_URL[0] != '?'){
-    old_URL='?age=19'
-    history.pushState(null,'','?age=19');
-  }
+  // if (old_URL.length == 0 || old_URL[0] != '?'){
+  //   old_URL='?age=19'
+  //   history.pushState(null,'','?age=19');
+  // }
   var re = eval('/(' + paramName + '=)([^&]*)/gi');
   if(getUrlParam(paramName) != null){
     var new_URL = old_URL.replace(re, paramName + '=' + replaceWith);

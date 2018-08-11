@@ -32,6 +32,7 @@ function getDataFromForm(){
     // 收集神经网络输入数据
     ann_input.push([parseFloat(form_agrs[k].value)]);
     // 更新URL
+    console.log([form_agrs[k].name, form_agrs[k].value]);
     replaceParamVal(form_agrs[k].name, form_agrs[k].value)
   }
   return ann_input;
@@ -105,24 +106,23 @@ function setForm() {
 }
 
 
-//替换URL中指定传入参数的值,paramName为参数,replaceWith为新值
+//替换URL中指定传入参数的值, paramName为参数名, replaceWith为该参数的新值
 function replaceParamVal(paramName, replaceWith) {
   var old_URL = window.location.search;
-  // if (old_URL.length == 0 || old_URL[0] != '?'){
-  //   old_URL='?age=19'
-  //   history.pushState(null,'','?age=19');
-  // }
   var re = eval('/(' + paramName + '=)([^&]*)/gi');
-  if(getUrlParam(paramName) != null){
+  var param_rs = getUrlParam(paramName);  //判断URL中是否已经包含了该参数
+  var has_question_mark = (old_URL.indexOf('?') == -1 && old_URL.indexOf('=') == -1) ? '?' : '';
+  if(param_rs != null && replaceWith != ''){
     var new_URL = old_URL.replace(re, paramName + '=' + replaceWith);
-  }else {
-    var new_URL = old_URL+'&'+paramName+'='+replaceWith;
+  } else if (param_rs == null && replaceWith != '') {
+    var new_URL = old_URL+has_question_mark+'&'+paramName+'='+replaceWith;
   }
   history.pushState(null,'', new_URL);
 }
 
 
 // ======================================================================
+//切换语言
 // 切换为简体中文
 function lang_cn(){
   rs_text=$('#rs_text').text();

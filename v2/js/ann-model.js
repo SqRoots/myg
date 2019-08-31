@@ -11,7 +11,7 @@ function Ramp(x_matrix){
   const b = a.map(function (value, index, matrix) {
     return Math.max(0,value)
   });
-  return b;
+  return b["_data"];
 }
 
 // SoftMax
